@@ -19,7 +19,8 @@ var Shows = function(){
         {name: 'Homeland', url: 'http://www.tv.com/shows/homeland-2011/'},
         {name: 'Top Gear', url: 'http://www.tv.com/shows/top-gear/'},
         {name: 'House of lies', url: 'http://www.tv.com/shows/house-of-lies/'},
-        {name: 'Cougar town', url: 'http://www.tv.com/shows/cougar-town/'}
+        {name: 'Cougar town', url: 'http://www.tv.com/shows/cougar-town/'},
+        {name: 'South Park', url: 'http://www.tv.com/shows/south-park/'}
     ];
     
     this.load = function() {
