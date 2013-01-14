@@ -1,0 +1,55 @@
+<html>
+<head>
+    <title>Next episode</title>
+    <style type="text/css">
+    body{
+        margin:0px;
+        padding: 0px;
+        font-family: "Helvetica Neue", Helvetica;
+    }
+    ul{
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+    }
+    li {
+        height: 240px;
+        margin: 20px;
+        position: relative;
+    }
+    h1 {
+        font-weight: normal;
+    }
+    img {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+    }
+    </style>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/1.7.2/moment.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.3/underscore-min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $.getJSON('/shows', function(data){
+                var shows = _(data['shows']).sortBy(function(e){
+                    if(!e.date) return 999999999999;
+                    return moment(e.date).unix();
+                });
+                shows.forEach(function(show){
+                    var template = '<li><h1>'+ show.name +'</h1>';
+                    if(show.date)
+                        template += '<span>'+ moment(show.date).fromNow() +'</span>';
+                    template += '<img src="'+ show.img +'" /></li>';
+                    var li = $(template);
+                    $('ul').append(li);
+                })
+            });
+        });
+    </script>
+</head>
+<body>
+    <ul></ul>
+</body>
+</html>
